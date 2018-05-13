@@ -15,12 +15,12 @@ public class PostHandler {
 
     private WebClient client = WebClient.create("https://jsonplaceholder.typicode.com");
 
-    private Mono<ClientResponse> result = client.get()
-            .uri("/posts/1")
-            .accept(MediaType.APPLICATION_JSON)
-            .exchange();
 
     public Mono<ServerResponse> hello(ServerRequest request) {
+        var result = client.get()
+                .uri("/posts/1")
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange();
         return result.flatMap(res -> res.bodyToMono(String.class))
                 .flatMap(body -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromObject(body)));
