@@ -19,7 +19,9 @@ FROM openjdk:10-jre-slim
 
 WORKDIR /server
 
-COPY --from=builder /app/target/starter*.war ./target/
+COPY --from=builder /app/target/starter*.jar ./target/
 EXPOSE 8080
+EXPOSE 5005
 
-CMD java -jar ./target/*.war
+# CMD java -Xdebug -Xrunjdwp:transport=dt_socket,address=*:5005,server=y,suspend=n -jar ./target/*.jar
+CMD java -jar ./target/*.jar

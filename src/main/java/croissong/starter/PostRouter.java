@@ -15,6 +15,6 @@ public class PostRouter {
     public RouterFunction<ServerResponse> route(PostHandler greetingHandler) {
 
         return RouterFunctions
-                .route(RequestPredicates.GET("/post/1").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), greetingHandler::hello);
+                .route(RequestPredicates.GET("/rest/post/1").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), greetingHandler::hello);
     }
 }
