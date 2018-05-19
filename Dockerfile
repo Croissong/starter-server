@@ -6,11 +6,11 @@ WORKDIR /app
 
 ## Maven dependencies
 COPY pom.xml .
-RUN mvn -B -e -C -T 1C org.apache.maven.plugins:maven-dependency-plugin:3.0.2:go-offline
+RUN mvn -B -e -C -T 1C dependency:go-offline
 
 ## Maven package
 COPY src ./src
-RUN mvn -B -e -T 1C package
+RUN mvn -B -e -o -T 1C package
 
 
 ### Runner Image
