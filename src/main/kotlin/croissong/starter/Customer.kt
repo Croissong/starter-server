@@ -8,12 +8,15 @@ import javax.persistence.Id
 
 
 @Entity
-class Customer(var firstName: String="", var lastName: String="") {
+class Customer {
+
+    private lateinit var firstName: String
+    private lateinit var lastName: String
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private val id = 0L
 
     override fun toString(): String = "Customer[id=$id, firstName='$firstName', lastName='$lastName']"
-
 
 }

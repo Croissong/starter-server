@@ -19,12 +19,6 @@ class MyBean(private var repository: CustomerRepository) : CommandLineRunner {
 
     override fun run(vararg args: String) {
         val log = LoggerFactory.getLogger(StarterApplication::class.java)
-        // save a couple of customers
-        repository.save(Customer("Jack", "Bauer"))
-        repository.save(Customer("Chloe", "O'Brian"))
-        repository.save(Customer("Kim", "Bauer"))
-        repository.save(Customer("David", "Palmer"))
-        repository.save(Customer("Michelle", "Dessler"))
         // fetch all customers
         log.info("Customers found with findAll():")
         log.info("-------------------------------")

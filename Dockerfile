@@ -10,6 +10,7 @@ RUN mvn -B -e -C -T 1C dependency:go-offline
 
 ## Maven package
 COPY src ./src
+COPY config ./config
 RUN mvn -B -e -o -T 1C package
 
 
@@ -18,7 +19,7 @@ RUN mvn -B -e -o -T 1C package
 FROM openjdk:10-jre-slim
 
 WORKDIR /server
-
+VOLUME /server/config
 COPY --from=builder /app/target/starter*.jar ./target/
 EXPOSE 8080
 EXPOSE 5005
