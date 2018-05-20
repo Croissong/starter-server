@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="async" class="net.logstash.logback.appender.LoggingEventAsyncDisruptorAppender">
+        <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+            <layout class="net.logstash.logback.layout.LogstashLayout">
+            </layout>
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+        </appender>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="async"/>
+    </root>
+</configuration>

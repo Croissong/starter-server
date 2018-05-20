@@ -9,12 +9,14 @@ import org.springframework.web.reactive.function.server.router
 
 
 @Configuration
-open class PostRouter {
+open class RestRouter {
     @Bean
-    open fun route(greetingHandler: PostHandler): RouterFunction<ServerResponse> {
+    open fun route(shipHandler: PostHandler): RouterFunction<ServerResponse> {
         return router {
-            accept(MediaType.TEXT_HTML).nest {
-                GET("/post/1", greetingHandler::hello2)
+            "/rest".nest {
+                accept(MediaType.APPLICATION_JSON).nest {
+                    GET("/ships", shipHandler::getAll)
+                }
             }
         }
     }

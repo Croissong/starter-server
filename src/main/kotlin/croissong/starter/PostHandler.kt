@@ -9,11 +9,11 @@ import reactor.core.publisher.Mono
 
 
 @Component
-class PostHandler(private var repository: CustomerRepository, private var asyncWrapper: AsyncJdbcWrapper) {
+class PostHandler(private var repository: ShipRepository, private var asyncWrapper: AsyncJdbcWrapper) {
 
-    fun hello2(request: ServerRequest): Mono<ServerResponse> {
-        val customers = asyncWrapper.async { repository.testQuery("Ba%", "%er") }
+    fun getAll(_req: ServerRequest): Mono<ServerResponse> {
+        val ships = asyncWrapper.async { repository.findAll() }
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                .body(customers, object : ParameterizedTypeReference<List<Customer>>() {})
+                .body(ships, object : ParameterizedTypeReference<Iterable<Ship>>() {})
     }
 }

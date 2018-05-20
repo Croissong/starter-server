@@ -5,11 +5,11 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.data.repository.query.Param
 
 
-interface CustomerRepository : CrudRepository<Customer, Long> {
+interface ShipRepository : CrudRepository<Ship, Int> {
 
-    fun findByLastName(lastName: String): List<Customer>
+    fun findByName(name: String): List<Ship>
 
     @Query(value = "select * from customer where last_name like :startswith and last_name like :endswith", nativeQuery = true)
-    fun testQuery(@Param("startswith") startsWith: String, @Param("endswith") endsWith: String): List<Customer>
+    fun testQuery(@Param("startswith") startsWith: String, @Param("endswith") endsWith: String): List<Ship>
 
 }

@@ -15,26 +15,26 @@ fun main(args: Array<String>) {
 }
 
 @Component
-class MyBean(private var repository: CustomerRepository) : CommandLineRunner {
+class MyBean(private var repository: ShipRepository) : CommandLineRunner {
 
     override fun run(vararg args: String) {
         val log = LoggerFactory.getLogger(StarterApplication::class.java)
         // fetch all customers
         log.info("Customers found with findAll():")
         log.info("-------------------------------")
-        repository.findByLastName("C%").forEach { c -> log.info(c.toString()) }
+        repository.findByName("C%").forEach { c -> log.info(c.toString()) }
         log.info("")
         // fetch an individual customer by ID
-        repository.findById(1L).ifPresent { customer ->
-            log.info("Customer found with findById(1L):")
+        repository.findById(1).ifPresent { customer ->
+            log.info("Ship found with findById(1):")
             log.info("--------------------------------")
             log.info(customer.toString())
             log.info("")
         }
         // fetch customers by last name
-        log.info("Customer found with findByLastName('Bauer'):")
+        log.info("Ship found with findByLastName('Bauer'):")
         log.info("--------------------------------------------")
-        repository.findByLastName("Bauer").forEach { bauer ->
+        repository.findByName("Bauer").forEach { bauer ->
             log.info(bauer.toString())
         }
     }
